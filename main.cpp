@@ -6,6 +6,7 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 using namespace std;
 void pascal(int,int,int[],int[]);
+
 void sumatoria();
 void grafico();
 void imprimir(int [], int tam);
@@ -43,6 +44,7 @@ int main(int argc, char** argv) {
 					res_anterior[i]=0;
 				}
 				pascal(0,max_n, res_anterior, salida);
+				
 
 				break;
 			}
@@ -65,12 +67,41 @@ int main(int argc, char** argv) {
 	return 0;
 
 }
+void pascal(int n, int max_n,int res_anterior[],int salida[] ) {
+	int final= 0;
+	if(n==max_n) {
+		cout<<endl;
+		cout<<"Al fin lo pude hacer :D \n"<<endl;
 
+	} else {
+		if(n==final) {
+			salida[n]=1;
+			res_anterior[n]=1;
+			cout<<salida[n]<<endl;
+			pascal(n+1,max_n,res_anterior,salida);
+		} else {
+			for(int i = 0; i< n; i++) {
+
+				salida[i]=res_anterior[i-1]+res_anterior[i];
+
+				cout<<salida[i]<<" ";
+			}
+
+			for(int i = 0; i<n; i++) {
+				res_anterior[i]=salida[i];
+				salida[i]=final;
+			}
+			cout<<endl;
+			pascal(n+1,max_n,res_anterior,salida);
+		}
+
+	}
+}// fin pascal;
 
 
 void sumatoria() {
 	int arreglo[20];
-	
+
 	for(int i = 0; i <20; i++) {
 		arreglo[i]=1+rand()%99;
 	}
@@ -138,36 +169,3 @@ void imprimir(int arreglo [],int tam) {
 	}
 	cout<<"] "<<endl;
 }
-
-void pascal(int n, int max_n,int res_anterior[],int salida[] ) {
-	int final= 0;
-	if(n==max_n) {
-		cout<<endl;
-		cout<<"Al fin lo pude hacer :D \n"<<endl;
-		
-	} else {
-		if(n==final) {
-			salida[n]=1;
-			res_anterior[n]=1;
-			cout<<salida[n]<<endl;
-			pascal(n+1,max_n,res_anterior,salida);
-		} else {
-			for(int i = 0; i< n; i++) {
-
-				salida[i]=res_anterior[i-1]+res_anterior[i];
-
-				cout<<salida[i]<<" ";
-			}
-
-			for(int i = 0; i<n; i++) {
-				res_anterior[i]=salida[i];
-				salida[i]=final;
-			}
-			cout<<endl;
-			pascal(n+1,max_n,res_anterior,salida);
-		}
-
-	}
-}// fin pascal;
-
-
